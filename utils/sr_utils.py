@@ -58,8 +58,7 @@ def super_resolution(
             logger.info(f"{idx: 4d} --> {img_name + ext:<s}")
 
             img_L = util.imread_uint(img, n_channels=3)
-            img_L = util.uint2tensor4(img_L)
-            img_L = img_L.to(device)
+            img_L = util.uint2tensor4(img_L).to(device)
 
             # --------------------------------
             # (2) inference
