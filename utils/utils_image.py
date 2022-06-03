@@ -154,6 +154,15 @@ def split_imageset(original_dataroot, taget_dataroot, n_channels=3, p_size=800, 
 def mkdir(path):
     if not os.path.exists(path):
         os.makedirs(path)
+        return path
+    else:
+        count = 1
+        new_path = f"{path}_{str(count)}"
+        while os.path.exists(new_path):
+            count += 1
+            new_path = f"{path}_{str(count)}"
+        os.makedirs(new_path)
+        return new_path
 
 
 def mkdirs(paths):
