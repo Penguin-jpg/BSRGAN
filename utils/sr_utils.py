@@ -33,44 +33,52 @@ def load_model(model_name, device):
 
 
 # image super resolution
-def super_resolution(
-    model, logger, device, testset_Ls=["diffusion"], save_results=True
-):
+def super_resolution(model, logger, device, testset_L="diffusion", save_results=True):
     utils_logger.logger_info("blind_sr_log", log_path="blind_sr_log.log")
 
     testsets = "testsets"  # fixed, set path of testsets
     logger.info("{:>16s} : {:<d}".format("GPU ID", torch.cuda.current_device()))
 
-    for testset_L in testset_Ls:
-        L_path = os.path.join(testsets, testset_L)
-        E_path = os.path.join("results", f"{testset_L}_results")
-        E_path = util.mkdir(E_path)
+    L_path = os.path.join(testsets, testset_L)
+    E_path = os.path.join("results", f"{testset_L}_results")
+    util.mkdir(E_path)
 
-        idx = 0
+    idx = 0
 
-        for img in util.get_image_paths(L_path):
+    for img in util.get_image_paths(L_path):
 
-            # --------------------------------
-            # (1) img_L
-            # --------------------------------
-            idx += 1
-            img_name, ext = os.path.splitext(os.path.basename(img))
-            logger.info(f"{idx: 4d} --> {img_name + ext:<s}")
+        # --------------------------------
+        # (1) img_L
+        # --------------------------------
+        idx += 1
+        img_name, ext = os.path.splitext(os.path.basename(img))
+        logger.info(f"{idx: 4d} --> {img_name + ext:<s}")
 
-            img_L = util.imread_uint(img, n_channels=3)
-            img_L = util.uint2tensor4(img_L).to(device)
+        img_L = util.imread_uint(img, n_channels=3)
+        img_L = util.uint2tensor4(img_L).to(device)
 
-            # --------------------------------
-            # (2) inference
-            # --------------------------------
-            img_E = model(img_L)
+        # --------------------------------
+        # (2) inference
+        # --------------------------------
+        img_E = model(img_L)
 
-            # --------------------------------
-            # (3) img_E
-            # --------------------------------
-            img_E = util.tensor2uint(img_E)
-            if save_results:
-                util.imsave(
-                    img_E,
-                    os.path.join(E_path, f"{img_name}_sr.png"),
-                )
+        # --------------------------------
+        # (3) img_E
+        # --------------------------------
+        img_E = util.tensor2uint(img_E)
+        if save_results:
+            util.imsave(
+                img_E,
+                os.path.join(E_path, f"{img_name}_sr.png"),
+            )
+
+        del img_L  # delete from gpu to free memory
+        torch.cuda.empty_cache()
+
+
+# if __name__ == "__main__":
+#     model_name = "BSRGAN"
+#     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+#     logger = logging.getLogger("blind_sr_log")
+#     model = load_model(model_name, device)
+#     super_resolution(model, logger, device)
