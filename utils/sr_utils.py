@@ -75,6 +75,8 @@ def super_resolution(model, logger, device, testset_L="diffusion", save_results=
         del img_L  # delete from gpu to free memory
         torch.cuda.empty_cache()
 
+    print("sr finished!")
+
 
 # if __name__ == "__main__":
 #     model_name = "BSRGAN"
