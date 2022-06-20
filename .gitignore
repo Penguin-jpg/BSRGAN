@@ -1,1 +1,2 @@
 model_zoo/*.pth
+results/*
