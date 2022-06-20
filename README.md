@@ -22,6 +22,26 @@ img_lq, img_hq = blindsr.degradation_bsrgan(img, sf=4, lq_patchsize=72)
 - **_News (2021-05-18)_**: Add trained BSRGAN model for scale factor 2.
 - **_News (2021-04)_**: Our degradation model for face image enhancement: [https://github.com/vvictoryuki/BSRGAN_implementation](https://github.com/vvictoryuki/BSRGAN_implementation)
 
+Model Zoo
+----------
+* Download the following models from [Github](https://github.com/cszn/KAIR/releases/tag/v1.0), [Google drive](https://drive.google.com/drive/folders/13kfr3qny7S2xwG9h7v95F5mkWs0OmU0D?usp=sharing) or [腾讯微云](https://share.weiyun.com/5qO32s3).
+  * Proposed:
+    * BSRNet.pth 
+    * BSRGAN.pth
+  * Compared methods:
+    * RRDB.pth  --->  [original link](https://github.com/xinntao/ESRGAN)
+    * ESRGAN.pth --->   [original link](https://github.com/xinntao/ESRGAN)
+    * FSSR_DPED.pth --->   [original link](https://github.com/ManuelFritsche/real-world-sr)
+    * FSSR_DPED.pth --->   [original link](https://github.com/ManuelFritsche/real-world-sr)
+    * RealSR_DPED.pth --->   [original link](https://github.com/jixiaozhong/RealSR)
+    * RealSR_JPEG.pth --->   [original link](https://github.com/jixiaozhong/RealSR)
+
+
+*  Github download link: https://github.com/cszn/KAIR/releases/tag/v1.0
+*  Google drive download link: [https://drive.google.com/drive/folders/13kfr3qny7S2xwG9h7v95F5mkWs0OmU0D?usp=sharing](https://drive.google.com/drive/folders/13kfr3qny7S2xwG9h7v95F5mkWs0OmU0D?usp=sharing)
+
+*  腾讯微云下载链接: [https://share.weiyun.com/5qO32s3](https://share.weiyun.com/5qO32s3)
+
 
 Training
 ----------
@@ -59,13 +79,16 @@ _______
 [<img src="figs/v3.png" width="784px"/>](https://imgsli.com/NDgzNDk)
 ___________
 
-* [Testing code](#testing-code)
-* [Main idea](#main-idea)
-* [Comparison](#comparison)
-* [More visual results on RealSRSet dataset](#more-visual-results-on-realsrset-dataset)
-* [Visual results on DPED dataset](#visual-results-on-dped-dataset)
-* [Citation](#citation)
-* [Acknowledgments](#acknowledgments)
+- [Designing a Practical Degradation Model for Deep Blind Image Super-Resolution](#designing-a-practical-degradation-model-for-deep-blind-image-super-resolution)
+  - [Model Zoo](#model-zoo)
+  - [Training](#training)
+  - [Testing code](#testing-code)
+  - [Main idea](#main-idea)
+  - [Comparison](#comparison)
+  - [More visual results on RealSRSet dataset](#more-visual-results-on-realsrset-dataset)
+  - [Visual results on DPED dataset](#visual-results-on-dped-dataset)
+  - [Citation](#citation)
+  - [Acknowledgments](#acknowledgments)
 
 Testing code
 ----------
